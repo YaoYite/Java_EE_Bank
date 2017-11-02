@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:f="http://java.sun.com/jsf/core"      
+     xmlns:h="http://java.sun.com/jsf/html"      
+         
+     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">    
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Search Bank Users"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Last Name" for="Lastname" />
+                    <h:inputText id="Lastname" value="#{searchController.lname}" title="Please enter the last name"/>
+                    <h:outputLabel value="First Name" for="Firstname" />
+                    <h:inputText id="Firstname" value="#{searchController.fname}" title="Please enter the first name"/>
+                    <h:outputLabel value="Email" for="email" />
+                    <h:inputText id="email" value="#{searchController.email}" title="Please enter the last email"/>
+                    <h:outputLabel value="Type" for="type" />
+                    <h:inputText id="type" value="#{searchController.type}" title="Please enter the type"/>
+                    <h:commandLink action="#{searchController.comboSearch()}" value="Search by combo of last name, first name, email and type" class="btn btn-success btn-sm"></h:commandLink>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

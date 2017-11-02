@@ -1,0 +1,23 @@
+create table USERS(
+USERID integer not null generated always as identity,
+FIRSTNAME varchar(50) not null,
+LASTNAME varchar(50) not null,
+EMAIL varchar(50) not null,
+PASSWORD varchar(50) not null,
+"TYPE"  varchar(50) not null,
+ADDRESS varchar(100) not null,
+PHONENUMBER integer not null,
+BALANCE double not null,
+constraint user_pk primary key (USERID)
+);
+
+create table TRANSACTIONS(
+TRANSACTIONID integer not null generated always as identity,
+USERID integer not null,
+TRANSACTIONNAME varchar(50) not null,
+"TYPE" varchar(50) not null,
+DESCRIPTION varchar(100) not null,
+constraint trans_pk primary key (TRANSACTIONID)
+);
+
+alter table TRANSACTIONS add constraint trans_user_fk foreign key (USERID) references USERS (USERID);

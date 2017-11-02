@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">    
+
+    <ui:composition template="/template.xhtml">
+    <ui:define name="body">  
+        <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        <p>           Transfer Money        </p>   
+         <h:form>
+        <f:view>
+                     <h:outputLabel value="From User(id) "/>
+                     <h:inputText  value="#{transferMoney.fromId}" title="Sender ID" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_userid}"/>
+                     <br/>
+                     <br/>
+                     <h:outputLabel value="To User(id) "/>
+                     <h:inputText  value="#{transferMoney.toId}" title='Receiver ID' required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_userid}" />
+                     <br/>
+                     <br/>
+                     <h:outputLabel value="Money Amount "/>
+                     <h:inputText  value="#{transferMoney.money}" title='Money' required="true" requiredMessage="The money number is required"/>
+                     <br/>
+                     <br/>
+                     <h:outputLabel value="Description "/>
+                     <h:inputText  value="#{transferMoney.description}" title="Description" required="true" requiredMessage="The description is required"/>
+                     <br/>
+                     <br/>
+                     <h:commandLink action="#{transferMoney.finishTransfer()}" value="Go" class="btn btn-success btn-sm"></h:commandLink>
+            
+        </f:view>
+            </h:form>
+    </ui:define>
+        </ui:composition>
+</html>

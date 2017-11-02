@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTransactionsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="                            "/>
+                    <h:outputLabel value="#{bundle.EditTransactionsLabel_transactionname}" for="transactionname" />
+                    <h:inputText id="transactionname" value="#{transactionsController.selected.transactionname}" title="#{bundle.EditTransactionsTitle_transactionname}" required="true" requiredMessage="#{bundle.EditTransactionsRequiredMessage_transactionname}"/>
+                    <h:outputLabel value="#{bundle.EditTransactionsLabel_type}" for="type" />
+
+                    <h:selectOneMenu id="type" value="#{transactionsController.selected.type}" title="#{bundle.CreateTransactionsTitle_type}" required="true" >
+                        <f:selectItem itemValue="Rent" itemLabel="rent" />
+                        <f:selectItem itemValue="Bill" itemLabel="Bill" />
+                        <f:selectItem itemValue="Savings" itemLabel="Savings" />
+                        <f:selectItem itemValue="Shop" itemLabel="Shop" />
+                        <f:selectItem itemValue="Allowance" itemLabel="Allowance" />
+                        <f:selectItem itemValue="Car" itemLabel="Car" />
+                        <f:selectItem itemValue="Home" itemLabel="Home" />
+                        <f:selectItem itemValue="Transfer" itemLabel="Transfer" />
+                        <f:selectItem itemValue="Gift" itemLabel="Gift" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="                            "/>
+                    <h:outputLabel value="#{bundle.EditTransactionsLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{transactionsController.selected.description}" title="#{bundle.EditTransactionsTitle_description}" required="true" requiredMessage="#{bundle.EditTransactionsRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.EditTransactionsLabel_userid}" for="userid" />
+                    <h:selectOneMenu id="userid" value="#{transactionsController.selected.userid}" title="#{bundle.EditTransactionsTitle_userid}" required="true" requiredMessage="#{bundle.EditTransactionsRequiredMessage_userid}">
+                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{transactionsController.update}" value="#{bundle.EditTransactionsSaveLink}" class="btn btn-success btn-sm"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTransactionsViewLink}" class="btn btn-primary btn-sm"/>
+                <br />
+                <h:commandLink action="#{transactionsController.prepareList}" value="#{bundle.EditTransactionsShowAllLink}" immediate="true" class="btn btn-info btn-sm"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTransactionsIndexLink}" class="btn btn-primary btn-sm"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

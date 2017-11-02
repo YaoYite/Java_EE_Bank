@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:f="http://java.sun.com/jsf/core"      
+     xmlns:h="http://java.sun.com/jsf/html"      
+         
+     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">    
+    <ui:composition template="/template.xhtml">
+<!--   <ui:composition template="/template.xhtml">-->
+        <ui:define name="title">
+            <h:outputText value="Search Bank Transaction"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="Search by transaction id" for="transactionid" />
+                    <h:inputText id="transactionid" value="#{searchController.id}" title="Please enter the id" required="true" requiredMessage="#{bundle.EditTransactionsRequiredMessage_transactionid}"/>
+                    <h:commandLink action="#{searchController.searchByid()}" value="search" class="btn btn-success btn-sm"></h:commandLink>
+                </h:panelGrid>
+            </h:form>
+            <hr />
+             <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="Search by transaction name" for="transactionname" />
+                    <h:inputText id="transactionname" value="#{searchController.name}" title="Please enter the name" required="true" requiredMessage="#{bundle.EditTransactionsRequiredMessage_transactionname}"/> 
+                    <h:commandLink action="#{searchController.searchByName()}" value="search" class="btn btn-success btn-sm"></h:commandLink>
+                </h:panelGrid>
+            </h:form>
+            <hr />
+            <h:form>
+                <h:panelGrid columns="4">
+<!--                    <h:outputLabel value="Search by transaction type" for="type" />
+                    <h:inputText id="type" value="#{searchController.type}" title="Please enter the type" required="true" requiredMessage="#{bundle.EditTransactionsRequiredMessage_type}"/>-->
+                    <h:outputLabel value="Search by transaction type" for="type" />
+                    <h:selectOneMenu id="type" value="#{searchController.type}" title="Please enter the type" required="true" >
+                        <f:selectItem itemValue="Rent" itemLabel="rent" />
+                        <f:selectItem itemValue="Bill" itemLabel="Bill" />
+                        <f:selectItem itemValue="Savings" itemLabel="Savings" />
+                        <f:selectItem itemValue="Shop" itemLabel="Shop" />
+                        <f:selectItem itemValue="Allowance" itemLabel="Allowance" />
+                        <f:selectItem itemValue="Car" itemLabel="Car" />
+                        <f:selectItem itemValue="Home" itemLabel="Home" />
+                        <f:selectItem itemValue="Transfer" itemLabel="Transfer" />
+                        <f:selectItem itemValue="Gift" itemLabel="Gift" />
+                        
+                    </h:selectOneMenu>
+                    <h:commandLink action="#{searchController.searchByType()}" value="search" class="btn btn-success btn-sm"></h:commandLink>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:f="http://java.sun.com/jsf/core"     
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">    
+    <ui:composition template="/template.xhtml">
+        <h:head>       
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <title>The result of search</title>        
+
+        </h:head>    
+        <ui:define name="body">       
+            <f:view>
+                    <h1><h:outputText value="Result List"/></h1>
+                  <h:form styleClass="jsfcrud_list_form">
+                    <h:dataTable value="#{searchController.transactionList}" var="item" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px;border-color: white;">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Transactionid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.transactionid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Transactionname"/>
+                            </f:facet>
+                            <h:outputText value="#{item.transactionname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{searchController.detail(item.transactionid)}" value="#{bundle.ListTransactionsViewLink}" class="btn btn-info btn-xs"/>
+                        </h:column>
+                    </h:dataTable>
+                      <br/>
+                      <br/>
+                      <h:commandLink action="#{searchController.detail(item.transactionid)}" value="View all transaction detail" class="btn btn-primary btn-sm"></h:commandLink>
+                    <br/>
+                    <br />
+                    <h:link outcome="index" value="Search Page" class="btn btn-primary btn-sm"></h:link>
+                </h:form>
+            </f:view>
+
+        </ui:define> 
+    </ui:composition>
+</html>
